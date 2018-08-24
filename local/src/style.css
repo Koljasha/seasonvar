@@ -1,0 +1,42 @@
+body {
+    background-color: black;
+    color: rgb(210, 234, 255);
+}
+
+form {
+    width: 60%;
+}
+
+button {
+    background-color: rgb(15, 0, 110);
+}
+
+a {
+    color: rgb(210, 234, 255);
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(255, 233, 233);
+}
+
+.alert {
+    text-align: center;
+}
+
+.extension img {
+    width: 64px;
+}
+
+.extension a {
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+}
+
+.use {
+    font-size: .8em;
+}
+
+.use p{
+    font-size: 1em;
+}

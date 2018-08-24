@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Seasonvar & ColdFilm" />
+    <meta property="og:image" content="logo.jpg" />
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <title>Seasonvar & ColdFilm</title>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="row justify-content-center">
+            <img src="logo.jpg" class="img-fluid" alt="Seasonvar">
+        </div>
+        <!-- <form class="mx-auto">
+            <div class="form-group row justify-content-center">
+                <input type="url" class="form-control" placeholder="http://" v-model="url" autofocus>
+                <small class="form-text text-muted">document.querySelector('video').currentSrc</small>
+            </div>
+            <div class="row justify-content-center">
+                <button type="button" class="btn" v-on:click="openHD">Открыть</button>
+            </div>
+        </form>
+        <div class="row justify-content-center mt-5" v-if="error_">
+            <div class="alert alert-danger" role="alert">
+                Неверный адрес!
+                <br> Попробуй расширение!
+            </div>
+        </div> -->
+        <div class="row justify-content-center mt-3">
+            <h4>Просмотр <a href="http://seasonvar.ru/" target="_blank">Seasonvar</a>
+             и <a href="http://seasonvar.ru/" target="_blank">ColdFilm</a> в HD по прямым ссылкам</h4>
+        </div>
+        <div class="row justify-content-center align-items-center mt-3 extension">
+            <h4>Скачать:</h2>
+            <a class="border-right" href="serial.crx"> <img src="opera.png" title="Opera Extension" alt="Opera Extension"></a>
+            <a href="firefox.xpi"> <img src="firefox.png" title="Firefox Extension" alt="Firefox Extension"></a>
+        </div>
+        <div class="row justify-content-center mt-4 use">
+            <p>Установка расширения:</p>
+            <ul>
+                <li>установка в Opera - автоматическая</li>
+                <li>установка в Firefox - автоматическая</li>
+                <li>установка в Chrome - ручная</li>
+            </ul>
+        </div>
+        
+        <div class="row justify-content-center mt-4 use">
+            <p>Использование расширения:</p>
+            <ul>
+                <li>выбрать выбрать сериал/серию</li>
+                <li>кликнуть на иконку расширения</li>
+                <li>в новой вкладке откроется серия в HD (если есть)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

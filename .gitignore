@@ -1,0 +1,10 @@
+backend/__pycache__/
+backend/venv/
+backend/*.json
+extension/keys/
+local/node_modules/
+local/dist/
+seasonvar/__pycache__/
+seasonvar/venv/
+seasonvar/*.json
+seasonvar/chromedriver.exe
