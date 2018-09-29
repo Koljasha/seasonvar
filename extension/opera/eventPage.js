@@ -27,7 +27,7 @@ chrome.browserAction.setBadgeBackgroundColor({
 
 let badgeShow = function() {
     chrome.browserAction.setBadgeText({
-        text: 'Load'
+        text: '⌛'
     });
 }
 
@@ -76,6 +76,11 @@ chrome.browserAction.onClicked.addListener(function() {
                             badgeHide();
                         });
                 }
+                else {
+                    let code_ = "alert('A different player is in use, or the video is not loaded');";
+                    chrome.tabs.executeScript(tab.id, { code: code_ });
+                    badgeHide();
+                }
             });
         }
         // проверка, что сериал coldfilm
@@ -93,13 +98,15 @@ chrome.browserAction.onClicked.addListener(function() {
                                     newTab(i);
                                 }
                             } else {
-                                console.log("A different player is in use, or the video is not loaded.");
+                                let code_ = "alert('A different player is in use, or the video is not loaded');";
+                                chrome.tabs.executeScript(tab.id, { code: code_ });
                             }
                             badgeHide();
                         })
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    let code_ = `alert('${error}');`;
+                    chrome.tabs.executeScript(tab.id, { code: code_ })
                     badgeHide();
                 })
         }
