@@ -5,6 +5,7 @@ import './style.css';
 
 import './logo.jpg';
 import './favicon.png';
+import './chrome.png';
 import './opera.png';
 import './firefox.png';
 
