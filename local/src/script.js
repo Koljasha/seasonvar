@@ -9,7 +9,7 @@ import './chrome.png';
 import './opera.png';
 import './firefox.png';
 
-import './serial.crx';
+import './opera.crx';
 import './firefox.xpi';
 
 import seasonvar from './main';
