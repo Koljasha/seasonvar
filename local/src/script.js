@@ -3,15 +3,6 @@ import Vue from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 
-// import './logo.jpg';
-// import './favicon.png';
-// import './chrome.png';
-// import './opera.png';
-// import './firefox.png';
-
-// import './opera.crx';
-// import './firefox.xpi';
-
 import seasonvar from './main';
 
 let app = new Vue({
