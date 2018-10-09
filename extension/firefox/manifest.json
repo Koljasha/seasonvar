@@ -4,15 +4,13 @@
     "name": "Seasonvar & ColdFilm",
     "description": "Просмотр Seasonvar и ColdFilm в HD по прямым ссылкам",
     "author": "Koljasha",
-    "applications":
-    {
-        "gecko":
-        {
+    "applications": {
+        "gecko": {
             "id": "{b6ffe354-a2c7-486b-ae19-c1601f3e31f6}",
-            "update_url ": "https://serial.koljasha.ru/ext/updates.json"
+            "update_url": "https://serial.koljasha.ru/ext/updates.json"
         }
     },
-    "version": "1.0.0.4",
+    "version": "1.0.0.5",
 
     "icons":
     {
