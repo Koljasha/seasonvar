@@ -5,9 +5,13 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -19,11 +23,11 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
     },
-    devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
-        compress: true,
-        port: 9090
-    },
+    // devServer: {
+    //     contentBase: path.resolve(__dirname, 'dist'),
+    //     compress: true,
+    //     port: 9090
+    // },
 
     optimization: {
         minimizer: [
@@ -43,6 +47,23 @@ module.exports = {
                 conservativeCollapse: true
             },
         }),
+        new CopyWebpackPlugin([
+            { from: 'src/img/', to: 'img/' },
+            { from: 'src/ext/', to: 'ext/' },
+        ]),
+        new ImageminPlugin({
+            disable: devMode,
+            test: /\.(jpe?g|png|gif)$/i,
+            optipng: {
+                optimizationLevel: 7
+            },
+            plugins: [
+                imageminMozjpeg({
+                    quality: 90,
+                    progressive: true
+                })
+            ]
+        })
         // new VueLoaderPlugin(),
         // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
@@ -80,15 +101,15 @@ module.exports = {
             //     test: /\.vue$/,
             //     loader: 'vue-loader'
             // },
-            {
-                test: /\.(jpg|png|crx|nex|xpi)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]'
-                    }
-                }]
-            }
+            // {
+            //     test: /\.(jpg|png|crx|nex|xpi)$/,
+            //     use: [{
+            //         loader: 'file-loader',
+            //         options: {
+            //             name: '[name].[ext]'
+            //         }
+            //     }]
+            // }
         ]
     }
 }
