@@ -3,13 +3,25 @@ body {
     color: rgb(210, 234, 255);
 }
 
-form {
+.background {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.logo {
+  z-index: -2;
+}
+
+/*form {
     width: 60%;
 }
 
 button {
     background-color: rgb(15, 0, 110);
-}
+}*/
 
 a {
     color: rgb(210, 234, 255);
@@ -17,7 +29,7 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: rgb(255, 233, 233);
+    color: rgb(0, 130, 238);
 }
 
 .alert {
@@ -39,4 +51,9 @@ a:hover {
 
 .use p{
     font-size: 1em;
+}
+
+iframe {
+  margin-left: 1em;
+  margin-right: 1em;
 }
