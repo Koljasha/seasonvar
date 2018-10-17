@@ -4,15 +4,15 @@ body {
 }
 
 .background {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  z-index: -1;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 .logo {
-  z-index: -2;
+    z-index: -2;
 }
 
 /*form {
@@ -49,11 +49,33 @@ a:hover {
     font-size: .8em;
 }
 
-.use p{
+.use p {
     font-size: 1em;
 }
 
 iframe {
-  margin-left: 1em;
-  margin-right: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+/*from bootstrap.css*/
+
+h4 {
+    font-size: 1.5rem;
+}
+
+.border-right {
+    border-right: 1px solid #dee2e6;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
 }
