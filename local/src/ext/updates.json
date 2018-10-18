@@ -1,16 +1,21 @@
 {
-	"addons": {
-		"{b6ffe354-a2c7-486b-ae19-c1601f3e31f6}": {
-			"updates": [
-				{
-					"version": "1.0.0.7",
-					"update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.0.7-fx.xpi"
-				},
-                {
-                    "version": "1.0.0.8",
-                    "update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.0.8-fx.xpi"
-                }
-			]
-		}
-	}
+    "addons":
+    {
+        "{b6ffe354-a2c7-486b-ae19-c1601f3e31f6}":
+        {
+            "updates": [
+            {
+                "version": "1.0.0.7",
+                "update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.0.7-fx.xpi"
+            },
+            {
+                "version": "1.0.0.8",
+                "update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.0.8-fx.xpi"
+            },
+            {
+                "version": "1.0.0.9",
+                "update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.0.9-fx.xpi"
+            }]
+        }
+    }
 }
