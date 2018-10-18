@@ -4,7 +4,7 @@
 	"name": "Seasonvar & ColdFilm",
 	"description": "Просмотр Seasonvar и ColdFilm в HD по прямым ссылкам",
 	"author": "Koljasha",
-	"version": "1.0.0.7",
+	"version": "1.0.0.8",
 
 	"icons": {
 		"16": "icon_16.png",
@@ -19,7 +19,8 @@
 	"permissions": [
 		"tabs",
 		"activeTab",
-		"http://data-hd.datalock.ru/*",
+		"*://*.datalock.ru/*",
+		"*://*.apollostream.xyz/*",
 		"https://serial.koljasha.ru/api/*"
 	],
 	

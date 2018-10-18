@@ -123,7 +123,47 @@ class SCFilms {
     }
 
     newTab(url) {
-        chrome.tabs.create({ "url": url });
+        chrome.tabs.create({ "url": url }, (tab) => {
+            let code_ = `
+const body = document.querySelector('body');
+const script = document.createElement('script');
+script.innerHTML = \`
+window.onload = () => {
+
+    const video = document.querySelector('video');
+
+    //disable fo Firefox
+    video.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            event.preventDefault();
+        } else if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+        }
+    });
+
+    //main listener
+    addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            if (video.currentTime + 30 <= video.duration) {
+                video.currentTime += 30;
+            } else {
+                video.currentTime = video.duration;
+            }
+        } else if (event.key === 'ArrowLeft') {
+            if (video.currentTime - 30 >= 0) {
+                video.currentTime -= 30;
+            } else {
+                video.currentTime = 0;
+            }
+        }
+    });
+
+};
+\`;
+body.append(script);
+            `;
+            chrome.tabs.executeScript(tab.id, { code: code_ });
+        });
     }
 }
 
