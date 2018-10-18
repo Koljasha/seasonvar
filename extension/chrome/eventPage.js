@@ -6,19 +6,19 @@ class SCFilms {
 
         chrome.browserAction.setBadgeBackgroundColor({ color: '#ff0000' });
 
-        chrome.tabs.onUpdated.addListener( (tabId, changeInfo, tab) => {
+        chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             if (changeInfo.status === 'complete' && tab.active) {
                 this.checkFilms(tab);
             }
         });
 
-        chrome.tabs.onActivated.addListener( (activeInfo) => {
+        chrome.tabs.onActivated.addListener((activeInfo) => {
             chrome.tabs.get(activeInfo.tabId, (tab) => {
                 this.checkFilms(tab);
             });
         });
 
-        chrome.browserAction.onClicked.addListener( (tab) => {
+        chrome.browserAction.onClicked.addListener((tab) => {
             // для Sesonvar
             if (this.isFilm === 2) {
                 this.badgeShow();
@@ -32,14 +32,14 @@ class SCFilms {
                         this.fetch_(url, {
                                 method: 'HEAD',
                             })
-                            .then( (response) => {
+                            .then((response) => {
                                 if (response.status !== 200) {
                                     url = res[0];
                                 }
                                 this.newTab(url);
                                 this.badgeHide();
                             })
-                            .catch( (error) => {
+                            .catch((error) => {
                                 this.newTab(res[0]);
                                 this.badgeHide();
                             });
@@ -49,15 +49,15 @@ class SCFilms {
                         this.badgeHide();
                     }
                 });
-            // для ColdFilm
+                // для ColdFilm
             } else if (this.isFilm === 3) {
                 this.badgeShow();
                 // запрос к api
                 let url = 'https://serial.koljasha.ru/api/?coldfilm=' + tab.url;
                 this.fetch_(url)
-                    .then( (response) => {
+                    .then((response) => {
                         response.json()
-                            .then( (body) => {
+                            .then((body) => {
                                 if (body.length > 0) {
                                     for (let i of body) {
                                         this.newTab(i);
@@ -69,13 +69,26 @@ class SCFilms {
                                 this.badgeHide();
                             })
                     })
-                    .catch( (error) => {
+                    .catch((error) => {
                         let code_ = `alert('${error}');`;
                         chrome.tabs.executeScript(tab.id, { code: code_ })
                         this.badgeHide();
                     })
             }
         });
+
+        //контекстное меню
+        chrome.contextMenus.removeAll();
+
+        chrome.contextMenus.create({
+            title: 'Разблокировка',
+            documentUrlPatterns: ['http://seasonvar.ru/serial-*']
+        });
+
+        chrome.contextMenus.onClicked.addListener((info, tab) => {
+            chrome.tabs.create({ url: 'http://datalock.ru/player/' + info.pageUrl.split('-')[1] });
+        });
+
     }
 
     // fetch with timeout

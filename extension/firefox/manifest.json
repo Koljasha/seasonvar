@@ -2,7 +2,7 @@
     "manifest_version": 2,
 
     "name": "Seasonvar & ColdFilm",
-    "description": "Просмотр Seasonvar и ColdFilm в HD по прямым ссылкам",
+    "description": "Просмотр Seasonvar и ColdFilm в HD без блокировок",
     "author": "Koljasha",
     "applications": {
         "gecko": {
@@ -10,7 +10,7 @@
             "update_url": "https://serial.koljasha.ru/ext/updates.json"
         }
     },
-    "version": "1.0.0.8",
+    "version": "1.0.0.9",
 
     "icons":
     {
@@ -27,6 +27,7 @@
     "permissions": [
         "tabs",
         "activeTab",
+        "contextMenus",
         "*://*.datalock.ru/*",
         "*://*.apollostream.xyz/*",
         "https://serial.koljasha.ru/api/*"
