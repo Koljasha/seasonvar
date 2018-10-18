@@ -7,7 +7,7 @@ class SCFilms {
         chrome.browserAction.setBadgeBackgroundColor({ color: '#ff0000' });
 
         chrome.tabs.onUpdated.addListener( (tabId, changeInfo, tab) => {
-            if (changeInfo.status === "complete" && tab.active) {
+            if (changeInfo.status === 'complete' && tab.active) {
                 this.checkFilms(tab);
             }
         });
@@ -23,14 +23,14 @@ class SCFilms {
             if (this.isFilm === 2) {
                 this.badgeShow();
                 // получение video с основной вкладки
-                let code_ = "document.querySelector('video').currentSrc;";
+                let code_ = 'document.querySelector(\'video\').currentSrc;';
                 chrome.tabs.executeScript(tab.id, { code: code_ }, (res) => {
                     // проверка что есть ссылка на video
                     if (res[0] !== null) {
                         let url = this.seasonvar_hd(res[0]);
                         // запрос, доступен ли hd
                         this.fetch_(url, {
-                                method: "HEAD",
+                                method: 'HEAD',
                             })
                             .then( (response) => {
                                 if (response.status !== 200) {
@@ -44,7 +44,7 @@ class SCFilms {
                                 this.badgeHide();
                             });
                     } else {
-                        let code_ = "alert('A different player is in use, or the video is not loaded');";
+                        let code_ = 'alert(\'A different player is in use, or the video is not loaded\');';
                         chrome.tabs.executeScript(tab.id, { code: code_ });
                         this.badgeHide();
                     }
@@ -53,7 +53,7 @@ class SCFilms {
             } else if (this.isFilm === 3) {
                 this.badgeShow();
                 // запрос к api
-                let url = "https://serial.koljasha.ru/api/?coldfilm=" + tab.url;
+                let url = 'https://serial.koljasha.ru/api/?coldfilm=' + tab.url;
                 this.fetch_(url)
                     .then( (response) => {
                         response.json()
@@ -63,7 +63,7 @@ class SCFilms {
                                         this.newTab(i);
                                     }
                                 } else {
-                                    let code_ = "alert('A different player is in use, or the video is not loaded');";
+                                    let code_ = 'alert(\'A different player is in use, or the video is not loaded\');';
                                     chrome.tabs.executeScript(tab.id, { code: code_ });
                                 }
                                 this.badgeHide();
@@ -92,9 +92,9 @@ class SCFilms {
     seasonvar_hd(url) {
         let str_ = url;
         let str_Arr = str_.split('/');
-        str_Arr[2] = "data-hd.datalock.ru";
+        str_Arr[2] = 'data-hd.datalock.ru';
         str_ = str_Arr[5];
-        str_ = "hd" + str_.substring(2);
+        str_ = 'hd' + str_.substring(2);
         str_Arr[5] = str_;
         str_ = str_Arr.join('/');
         return str_;
@@ -105,10 +105,10 @@ class SCFilms {
         let isSeasonvar = /http:\/\/seasonvar.ru\/serial-/.test(tab.url);
         let isColdfilm = /http:\/\/coldfilm.cc\/news\//.test(tab.url);
         if ((isSeasonvar || isColdfilm) && tab.active) {
-            chrome.browserAction.setIcon({ "path": "icon_16.png" });
+            chrome.browserAction.setIcon({ 'path': 'icon_16.png' });
             this.isFilm = isSeasonvar ? 2 : 3;
         } else {
-            chrome.browserAction.setIcon({ "path": "icon_16_def.png" });
+            chrome.browserAction.setIcon({ 'path': 'icon_16_def.png' });
             this.isFilm = 1;
         }
     }
@@ -123,7 +123,8 @@ class SCFilms {
     }
 
     newTab(url) {
-        chrome.tabs.create({ "url": url }, (tab) => {
+        chrome.tabs.create({ 'url': url }, (tab) => {
+            //инъекция скрипта для перемотки
             let code_ = `
 const body = document.querySelector('body');
 const script = document.createElement('script');
