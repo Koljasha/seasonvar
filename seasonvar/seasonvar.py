@@ -156,13 +156,20 @@ class SeasonvarFilms():
 	# получаем и проверяем ссылки hd
 	def link_hd(self, link):
 		ll = link.split('/')
-		ll[2] = 'data-hd.datalock.ru'
 		ll[5] = 'hd' + ll[5][2:]
+
+		ll[2] = 'data-hd.datalock.ru'
 		link_n = "/".join(ll)
-		if requests.head(link_n).status_code != 200:
-			return link
-		return link_n
-	#######
+		if requests.head(link_n).status_code == 200:
+			return link_n
+
+		ll[2] = 'data-hd-temp.datalock.ru'
+		link_n = "/".join(ll)
+		if requests.head(link_n).status_code == 200:
+			return link_n
+
+		return link
+#######
 
 	# перевод для ссылки
 	def get_translation(self, link):
