@@ -15,6 +15,10 @@
             {
                 "version": "1.0.0.9",
                 "update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.0.9-fx.xpi"
+            },
+            {
+                "version": "1.0.1.0",
+                "update_link": "https://serial.koljasha.ru/ext/seasonvar_coldfilm-1.0.1.0-fx.xpi"
             }]
         }
     }

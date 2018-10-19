@@ -27,29 +27,14 @@ class SCFilms {
                 chrome.tabs.executeScript(tab.id, { code: code_ }, (res) => {
                     // проверка что есть ссылка на video
                     if (res[0] !== null) {
-                        let url = this.seasonvar_hd(res[0]);
-                        // запрос, доступен ли hd
-                        this.fetch_(url, {
-                                method: 'HEAD',
-                            })
-                            .then((response) => {
-                                if (response.status !== 200) {
-                                    url = res[0];
-                                }
-                                this.newTab(url);
-                                this.badgeHide();
-                            })
-                            .catch((error) => {
-                                this.newTab(res[0]);
-                                this.badgeHide();
-                            });
+                        this.seasonvar_hd(res[0]);
                     } else {
                         let code_ = 'alert(\'A different player is in use, or the video is not loaded\');';
                         chrome.tabs.executeScript(tab.id, { code: code_ });
                         this.badgeHide();
                     }
                 });
-                // для ColdFilm
+            // для ColdFilm
             } else if (this.isFilm === 3) {
                 this.badgeShow();
                 // запрос к api
@@ -101,16 +86,44 @@ class SCFilms {
         ]);
     }
 
-    // получение hd ссылки на seasonvar
+    // открываем HD seasonvar
     seasonvar_hd(url) {
         let str_ = url;
         let str_Arr = str_.split('/');
-        str_Arr[2] = 'data-hd.datalock.ru';
         str_ = str_Arr[5];
         str_ = 'hd' + str_.substring(2);
         str_Arr[5] = str_;
+
+        // 1 server HD
+        str_Arr[2] = 'data-hd.datalock.ru';
         str_ = str_Arr.join('/');
-        return str_;
+        this.fetch_(str_, { method: 'HEAD' })
+            .then((response) => {
+                if (response.status === 200) {
+                    this.newTab(str_);
+                    this.badgeHide();
+                } else {
+                    // 2 server HD
+                    str_Arr[2] = 'data-hd-temp.datalock.ru';
+                    str_ = str_Arr.join('/');
+                    this.fetch_(str_, { method: 'HEAD' })
+                        .then((response) => {
+                            if (response.status === 200) {
+                                this.newTab(str_);
+                                this.badgeHide();
+                            }
+                            // нет HD
+                            else {
+                                this.newTab(url);
+                                this.badgeHide();
+                            }
+                        });
+                }
+            })
+            .catch(() => {
+                this.newTab(url);
+                this.badgeHide();
+            });
     }
 
     // проверка вкладки для ссылок
