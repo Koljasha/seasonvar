@@ -1,7 +1,7 @@
 backend/__pycache__/
 backend/venv/
 backend/*.json
-extension/keys/
+extension/chrome/node_modules/
 local/node_modules/
 local/dist/
 seasonvar/__pycache__/

@@ -1,6 +1,5 @@
 class SCFilms {
     constructor() {
-
         // 1 - no; 2 - seasonvar; 3 - coldfilm;
         this.isFilm = 1;
 
@@ -27,7 +26,7 @@ class SCFilms {
                 chrome.tabs.executeScript(tab.id, { code: code_ }, (res) => {
                     // проверка что есть ссылка на video
                     if (res[0] !== null) {
-                        this.seasonvar_hd(res[0]);
+                        this.seasonvarHD(res[0]);
                     } else {
                         let code_ = 'alert(\'A different player is in use, or the video is not loaded\');';
                         chrome.tabs.executeScript(tab.id, { code: code_ });
@@ -52,13 +51,13 @@ class SCFilms {
                                     chrome.tabs.executeScript(tab.id, { code: code_ });
                                 }
                                 this.badgeHide();
-                            })
+                            });
                     })
                     .catch((error) => {
                         let code_ = `alert('${error}');`;
-                        chrome.tabs.executeScript(tab.id, { code: code_ })
+                        chrome.tabs.executeScript(tab.id, { code: code_ });
                         this.badgeHide();
-                    })
+                    });
             }
         });
 
@@ -66,37 +65,36 @@ class SCFilms {
         chrome.contextMenus.removeAll();
 
         chrome.contextMenus.create({
-            title: 'Разблокировка',
+            title: 'Разблокировать',
             documentUrlPatterns: ['http://seasonvar.ru/serial-*']
         });
 
         chrome.contextMenus.onClicked.addListener((info, tab) => {
             chrome.tabs.create({ url: 'http://datalock.ru/player/' + info.pageUrl.split('-')[1] });
         });
-
     }
 
     // fetch with timeout
     fetch_(url, options, timeout = 10000) {
         return Promise.race([
             fetch(url, options),
-            new Promise((_, reject) =>
+            new Promise((resolve, reject) =>
                 setTimeout(() => reject(new Error('timeout')), timeout)
             )
         ]);
     }
 
     // открываем HD seasonvar
-    seasonvar_hd(url) {
+    seasonvarHD(url) {
         let str_ = url;
-        let str_Arr = str_.split('/');
-        str_ = str_Arr[5];
+        let strArr = str_.split('/');
+        str_ = strArr[5];
         str_ = 'hd' + str_.substring(2);
-        str_Arr[5] = str_;
+        strArr[5] = str_;
 
         // 1 server HD
-        str_Arr[2] = 'data-hd.datalock.ru';
-        str_ = str_Arr.join('/');
+        strArr[2] = 'data-hd.datalock.ru';
+        str_ = strArr.join('/');
         this.fetch_(str_, { method: 'HEAD' })
             .then((response) => {
                 if (response.status === 200) {
@@ -104,16 +102,16 @@ class SCFilms {
                     this.badgeHide();
                 } else {
                     // 2 server HD
-                    str_Arr[2] = 'data-hd-temp.datalock.ru';
-                    str_ = str_Arr.join('/');
+                    strArr[2] = 'data-hd-temp.datalock.ru';
+                    str_ = strArr.join('/');
                     this.fetch_(str_, { method: 'HEAD' })
                         .then((response) => {
                             if (response.status === 200) {
                                 this.newTab(str_);
                                 this.badgeHide();
                             }
-                            // нет HD
                             else {
+                                // нет HD
                                 this.newTab(url);
                                 this.badgeHide();
                             }
@@ -194,5 +192,4 @@ body.append(script);
     }
 }
 
-
-new SCFilms();
+const sc = new SCFilms();
