@@ -12,23 +12,20 @@ module.exports = {
         'standard'
     ],
     rules: {
-        'indent': [
-            'warn', 4, {
-                'SwitchCase': 1
-            }
-        ],
+        'indent': ['warn', 4],
         'semi': ['warn', 'always'],
-        'spaced-comment': 0, //['warn', 'never'],
+        'spaced-comment': 'off',
         'space-before-function-paren': ['warn', 'never'],
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-unused-vars': 0, //["warn", { "vars": "all", "args": "none", "ignoreRestSiblings": true }],
+        'no-unused-vars': 'off',
         'comma-dangle': ['warn', 'never'],
         'no-trailing-spaces': 'warn',
         'no-multiple-empty-lines': 'warn',
         'key-spacing': 'warn',
         'space-infix-ops': 'warn',
+
         // for this project
-        'no-undef': 0,
-        'brace-style': 0
+        'no-undef': 'off',
+        'brace-style': 'off'
     }
 };
