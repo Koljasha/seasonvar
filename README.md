@@ -5,7 +5,6 @@
 * **extension** - расширение для Opera, Firefox, Chrome
 * **seasonvar** - прямые ссылки страницы (нужен локальный *chromedriver*)
 
-* для Linux изменить в *package.json* `"build": "webpack --mode production"`
 * Сборка:
 ```
 git clone https://github.com/Koljasha/seasonvar/

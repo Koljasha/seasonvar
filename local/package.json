@@ -1,10 +1,10 @@
 {
-  "name": "Seasonvar_HD",
+  "name": "Serial",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "build": "set NODE_ENV=production&&webpack --mode production",
+    "build": "webpack --mode production",
     "serve": "webpack-dev-server --open --mode development"
   },
   "author": "Koljasha",
