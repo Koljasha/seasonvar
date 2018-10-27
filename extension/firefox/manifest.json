@@ -10,7 +10,7 @@
             "update_url": "https://serial.koljasha.ru/ext/updates.json"
         }
     },
-    "version": "1.0.1.1",
+    "version": "1.0.1.2",
 
     "icons":
     {
@@ -32,6 +32,8 @@
         "*://*.apollostream.xyz/*",
         "https://serial.koljasha.ru/api/*"
     ],
+
+        "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
     "browser_action":
     {

@@ -4,7 +4,7 @@
 	"name": "Seasonvar & ColdFilm",
 	"description": "Просмотр Seasonvar и ColdFilm в HD без блокировок",
 	"author": "Koljasha",
-	"version": "1.0.1.1",
+	"version": "1.0.1.2",
 
 	"icons": {
 		"16": "icon_16.png",
@@ -24,7 +24,9 @@
 		"*://*.apollostream.xyz/*",
 		"https://serial.koljasha.ru/api/*"
 	],
-	
+
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
 	"browser_action": {
 		"default_icon": {
       		"16": "icon_16_def.png"
