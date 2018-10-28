@@ -126,7 +126,7 @@ class SCFilms {
 
     // проверка вкладки для ссылок
     checkFilms(tab) {
-        let isSeasonvar = /http:\/\/seasonvar.ru\/serial-/.test(tab.url);
+        let isSeasonvar = /http:\/\/seasonvar.*\/serial-/.test(tab.url);
         let isColdfilm = /http:\/\/coldfilm.*\/news\//.test(tab.url);
         if ((isSeasonvar || isColdfilm) && tab.active) {
             chrome.browserAction.setIcon({ 'path': 'icon_16.png' });
