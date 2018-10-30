@@ -6,7 +6,7 @@ def coldfilm(url):
 	headers = {'referer':"http://s1.o2pmvb3c6o.ru/"}
 	answer = []
 
-	if url is None or re.match(r'http://coldfilm.cc/news/', url) is None or requests.head(url).status_code != 200:
+	if url is None or re.match(r'http://coldfilm.*/news/', url) is None or requests.head(url).status_code != 200:
 		return answer
 
 	soup = BeautifulSoup(requests.get(url).text, "html.parser")
