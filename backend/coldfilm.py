@@ -12,9 +12,10 @@ def coldfilm(url):
 	soup = BeautifulSoup(requests.get(url).text, "html.parser")
 
 	# http://hdgo.cc/video/t/tjvrdh1ecb0u26bmlvorcufy/.....
+	# https://vio.to/video/t/tjvrdh1ecb0u26bmlvorcufy/.....
 	all_iframes = soup.find_all('iframe')
 	for iframe in all_iframes:
-		if re.search(r'hdgo.cc/video', iframe.get('src')) is not None:
+		if re.search(r'hdgo.cc/video', iframe.get('src')) is not None or re.search(r'vio.to/video', iframe.get('src')) is not None:
 			src = iframe.get('src').split('/')
 			src[2] = storage
 			src = '/'.join(src)
