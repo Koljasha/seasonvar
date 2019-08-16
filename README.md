@@ -1,5 +1,5 @@
 ## Фильмы Seasonvar и ColdFilm
-### (не актуально :-( )
+### !!! - не актуально :-(
 
 * **local** - страница расширения - [serial.koljasha.ru](https://serial.koljasha.ru/)
 * **backend** - backend для обработки Extension (seasonvar не работает вне России)
